@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="ProductListCollection">
+        <property name="productLists" type="ProductList[]" singular="productList"/>
+    </transfer>
+
+    <transfer name="ProductList">
+        <property name="productListCompanyRelation" type="ProductListCompanyRelation"/>
+    </transfer>
+
+    <transfer name="ProductListCompanyRelation">
+        <property name="idProductList" type="int"/>
+        <property name="companyIds" type="int[]"/>
+    </transfer>
+
+    <transfer name="CompanyUser">
+        <property name="productListCollection" type="CompanyUserProductListCollection"/>
+    </transfer>
+
+    <transfer name="CompanyUserProductListCollection">
+        <property name="blacklistIds" type="int[]" singular="blacklistId"/>
+        <property name="whitelistIds" type="int[]" singular="whitelistId"/>
+    </transfer>
+</transfers>
