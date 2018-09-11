@@ -85,11 +85,11 @@ class ProductListCompanyFacadeTest extends Unit
     public function testHydrateCompanyUserWithProductListIds(): void
     {
         $this->productListCompanyBusinessFactoryMock->expects($this->atLeastOnce())
-            ->method('createCompanyExpander')
+            ->method('createCompanyUserHydrator')
             ->willReturn($this->companyUserHydratorMock);
 
         $this->companyUserHydratorMock->expects($this->atLeastOnce())
-            ->method('expandCompanyTransferWithProductListIds')
+            ->method('hydrateCompanyUserTransferWithProductListIds')
             ->willReturn($this->companyUserTransferMock);
 
         $actualCompanyTransfer = $this->productListCompanyFacade->hydrateCompanyUserWithProductListIds($this->companyUserTransferMock);

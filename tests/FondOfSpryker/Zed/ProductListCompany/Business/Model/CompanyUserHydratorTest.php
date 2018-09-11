@@ -33,13 +33,20 @@ class CompanyUserHydratorTest extends Unit
     protected $customerExpander;
 
     /**
+     * @var \Generated\Shared\Transfer\CompanyTransfer|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $companyMock;
+
+    /**
      * @return void
      */
     protected function _before(): void
     {
         parent::_before();
 
-        $this->companyUserTransfer = new CompanyUserTransfer();
+        $this->companyMock = $this->getMockBuilder('\Generated\Shared\Transfer\CompanyTransfer')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->productListReaderMock = $this->getMockForAbstractClass(ProductListReaderInterface::class);
 
@@ -59,6 +66,10 @@ class CompanyUserHydratorTest extends Unit
             ->setMethods(['getProductLists'])
             ->getMock();
 
+        $this->companyUserTransfer = new CompanyUserTransfer();
+
+        $this->companyUserTransfer->setCompany($this->companyMock);
+
         $this->customerExpander = new CompanyUserHydrator($this->productListReaderMock);
     }
 
@@ -69,7 +80,7 @@ class CompanyUserHydratorTest extends Unit
     {
         $this->productListReaderMock->expects($this->atLeastOnce())
             ->method('getProductListCollectionByIdCompanyId')
-            ->with($this->companyUserTransfer)
+            ->with($this->companyMock)
             ->willReturn($this->productListCollectionTransferMock);
 
         $this->productListCollectionTransferMock->expects($this->atLeastOnce())

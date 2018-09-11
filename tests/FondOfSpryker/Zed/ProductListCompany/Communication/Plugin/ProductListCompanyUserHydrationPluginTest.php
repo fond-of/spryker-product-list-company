@@ -48,7 +48,7 @@ class ProductListCompanyUserHydrationPluginTest extends Unit
     public function testHydrateTransfer(): void
     {
         $this->productListCompanyFacade->expects($this->atLeastOnce())
-            ->method('expandCompanyTransferWithProductListIds')
+            ->method('hydrateCompanyUserWithProductListIds')
             ->with($this->companyUserTransferMock)
             ->willReturn($this->companyUserTransferMock);
 

@@ -78,7 +78,7 @@ class ProductListCompanyRelationPostSaverPluginTest extends Unit
             ->willReturn($this->productListCompanyRelationTransferMock);
 
         $this->productListTransferMock->expects($this->never())
-            ->method('setProductListCompanyRelationTransferMock');
+            ->method('setProductListCompanyRelation');
 
         $productListTransferMock = $this->productListCompanyRelationPostSaverPlugin->postSave($this->productListTransferMock);
 
@@ -110,7 +110,7 @@ class ProductListCompanyRelationPostSaverPluginTest extends Unit
             ->willReturn($this->productListCompanyRelationTransferMock);
 
         $this->productListTransferMock->expects($this->atLeastOnce())
-            ->method('setProductListCompanyRelationTransferMock');
+            ->method('setProductListCompanyRelation');
 
         $productListTransferMock = $this->productListCompanyRelationPostSaverPlugin->postSave($this->productListTransferMock);
 

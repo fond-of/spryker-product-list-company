@@ -2,7 +2,7 @@
 
 namespace FondOfSpryker\Zed\ProductListCompany\Business\Model;
 
-use Generated\Shared\Transfer\CompanyProductListCollectionTransfer;
+use Generated\Shared\Transfer\CompanyUserProductListCollectionTransfer;
 use Generated\Shared\Transfer\CompanyUserTransfer;
 use Generated\Shared\Transfer\ProductListCollectionTransfer;
 
@@ -30,7 +30,7 @@ class CompanyUserHydrator implements CompanyUserHydratorInterface
      */
     public function hydrateCompanyUserTransferWithProductListIds(CompanyUserTransfer $companyUserTransfer): CompanyUserTransfer
     {
-        $companyUserTransfer->setProductListCollection(new CompanyProductListCollectionTransfer());
+        $companyUserTransfer->setProductListCollection(new CompanyUserProductListCollectionTransfer());
 
         $companyUserTransfer->requireCompany();
 
