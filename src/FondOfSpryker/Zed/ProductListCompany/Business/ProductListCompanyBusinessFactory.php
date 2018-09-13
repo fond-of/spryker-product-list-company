@@ -2,8 +2,8 @@
 
 namespace FondOfSpryker\Zed\ProductListCompany\Business;
 
-use FondOfSpryker\Zed\ProductListCompany\Business\Model\CompanyUserHydrator;
-use FondOfSpryker\Zed\ProductListCompany\Business\Model\CompanyUserHydratorInterface;
+use FondOfSpryker\Zed\ProductListCompany\Business\Model\CustomerExpander;
+use FondOfSpryker\Zed\ProductListCompany\Business\Model\CustomerExpanderInterface;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationReader;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationReaderInterface;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationWriter;
@@ -28,11 +28,11 @@ class ProductListCompanyBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \FondOfSpryker\Zed\ProductListCompany\Business\Model\CompanyUserHydratorInterface
+     * @return \FondOfSpryker\Zed\ProductListCompany\Business\Model\CustomerExpanderInterface
      */
-    public function createCompanyUserHydrator(): CompanyUserHydratorInterface
+    public function createCustomerExpander(): CustomerExpanderInterface
     {
-        return new CompanyUserHydrator($this->createProductListReader());
+        return new CustomerExpander($this->createProductListReader());
     }
 
     /**

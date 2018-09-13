@@ -3,20 +3,20 @@
 namespace FondOfSpryker\Zed\ProductListCompany\Business;
 
 use Codeception\Test\Unit;
-use FondOfSpryker\Zed\ProductListCompany\Business\Model\CompanyUserHydrator;
+use FondOfSpryker\Zed\ProductListCompany\Business\Model\CustomerExpander;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationWriter;
 
 class ProductListCompanyFacadeTest extends Unit
 {
     /**
-     * @var \Generated\Shared\Transfer\CompanyUserTransfer|\PHPUnit\Framework\MockObject\MockObject
+     * @var \Generated\Shared\Transfer\CustomerTransfer|\PHPUnit\Framework\MockObject\MockObject
      */
-    protected $companyUserTransferMock;
+    protected $customerTransferMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCompany\Business\Model\CompanyUserHydrator|\PHPUnit\Framework\MockObject\MockObject
+     * @var \FondOfSpryker\Zed\ProductListCompany\Business\Model\CustomerExpander|\PHPUnit\Framework\MockObject\MockObject
      */
-    protected $companyUserHydratorMock;
+    protected $customerExpanderMock;
 
     /**
      * @var \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyBusinessFactory|\PHPUnit\Framework\MockObject\MockObject
@@ -62,11 +62,11 @@ class ProductListCompanyFacadeTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companyUserTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CompanyUserTransfer')
+        $this->customerTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CustomerTransfer')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companyUserHydratorMock = $this->getMockBuilder(CompanyUserHydrator::class)
+        $this->customerExpanderMock = $this->getMockBuilder(CustomerExpander::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -82,19 +82,19 @@ class ProductListCompanyFacadeTest extends Unit
     /**
      * @return void
      */
-    public function testHydrateCompanyUserWithProductListIds(): void
+    public function testExpandCustomerTransferWithProductListIds(): void
     {
         $this->productListCompanyBusinessFactoryMock->expects($this->atLeastOnce())
-            ->method('createCompanyUserHydrator')
-            ->willReturn($this->companyUserHydratorMock);
+            ->method('createCustomerExpander')
+            ->willReturn($this->customerExpanderMock);
 
-        $this->companyUserHydratorMock->expects($this->atLeastOnce())
-            ->method('hydrateCompanyUserTransferWithProductListIds')
-            ->willReturn($this->companyUserTransferMock);
+        $this->customerExpanderMock->expects($this->atLeastOnce())
+            ->method('expandCustomerTransferWithProductListIds')
+            ->willReturn($this->customerTransferMock);
 
-        $actualCompanyTransfer = $this->productListCompanyFacade->hydrateCompanyUserWithProductListIds($this->companyUserTransferMock);
+        $actualCustomerTransfer = $this->productListCompanyFacade->expandCustomerTransferWithProductListIds($this->customerTransferMock);
 
-        $this->assertEquals($this->companyUserTransferMock, $actualCompanyTransfer);
+        $this->assertEquals($this->customerTransferMock, $actualCustomerTransfer);
     }
 
     /**

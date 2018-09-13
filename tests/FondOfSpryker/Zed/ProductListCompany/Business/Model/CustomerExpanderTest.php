@@ -3,9 +3,9 @@
 namespace FondOfSpryker\Zed\ProductListCompany\Business\Model;
 
 use Codeception\Test\Unit;
-use Generated\Shared\Transfer\CompanyUserTransfer;
+use Generated\Shared\Transfer\CustomerTransfer;
 
-class CompanyUserHydratorTest extends Unit
+class CustomerExpanderTest extends Unit
 {
     /**
      * @var \Generated\Shared\Transfer\ProductListTransfer[]|\PHPUnit\Framework\MockObject\MockObject[]
@@ -23,19 +23,24 @@ class CompanyUserHydratorTest extends Unit
     protected $productListCollectionTransferMock;
 
     /**
-     * @var \Generated\Shared\Transfer\CompanyUserTransfer
+     * @var \Generated\Shared\Transfer\CustomerTransfer
      */
-    protected $companyUserTransfer;
+    protected $customerTransfer;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCompany\Business\Model\CompanyUserHydratorInterface
+     * @var \Generated\Shared\Transfer\CompanyUserTransfer|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $companyUserTransferMock;
+
+    /**
+     * @var \FondOfSpryker\Zed\ProductListCompany\Business\Model\CustomerExpanderInterface
      */
     protected $customerExpander;
 
     /**
      * @var \Generated\Shared\Transfer\CompanyTransfer|\PHPUnit\Framework\MockObject\MockObject
      */
-    protected $companyMock;
+    protected $companyTransferMock;
 
     /**
      * @return void
@@ -44,7 +49,14 @@ class CompanyUserHydratorTest extends Unit
     {
         parent::_before();
 
-        $this->companyMock = $this->getMockBuilder('\Generated\Shared\Transfer\CompanyTransfer')
+        $this->customerTransfer = new CustomerTransfer();
+
+        $this->companyUserTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CompanyUserTransfer')
+            ->disableOriginalConstructor()
+            ->setMethods(['getCompany'])
+            ->getMock();
+
+        $this->companyTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CompanyTransfer')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -66,21 +78,23 @@ class CompanyUserHydratorTest extends Unit
             ->setMethods(['getProductLists'])
             ->getMock();
 
-        $this->companyUserTransfer = new CompanyUserTransfer();
-
-        $this->companyUserTransfer->setCompany($this->companyMock);
-
-        $this->customerExpander = new CompanyUserHydrator($this->productListReaderMock);
+        $this->customerExpander = new CustomerExpander($this->productListReaderMock);
     }
 
     /**
      * @return void
      */
-    public function testHydrateCompanyUserTransferWithProductListIds(): void
+    public function testExpandCustomerTransferWithProductListIds(): void
     {
+        $this->customerTransfer->setCompanyUserTransfer($this->companyUserTransferMock);
+
+        $this->companyUserTransferMock->expects($this->atLeastOnce())
+            ->method('getCompany')
+            ->willReturn($this->companyTransferMock);
+
         $this->productListReaderMock->expects($this->atLeastOnce())
             ->method('getProductListCollectionByIdCompanyId')
-            ->with($this->companyMock)
+            ->with($this->companyTransferMock)
             ->willReturn($this->productListCollectionTransferMock);
 
         $this->productListCollectionTransferMock->expects($this->atLeastOnce())
@@ -103,6 +117,6 @@ class CompanyUserHydratorTest extends Unit
             ->method('getIdProductList')
             ->willReturn(2);
 
-        $this->customerExpander->hydrateCompanyUserTransferWithProductListIds($this->companyUserTransfer);
+        $this->customerExpander->expandCustomerTransferWithProductListIds($this->customerTransfer);
     }
 }

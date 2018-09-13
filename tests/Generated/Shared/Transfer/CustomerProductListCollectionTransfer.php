@@ -12,7 +12,7 @@ use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
  * !!! THIS FILE IS AUTO-GENERATED, EVERY CHANGE WILL BE LOST WITH THE NEXT RUN OF TRANSFER GENERATOR
  * !!! DO NOT CHANGE ANYTHING IN THIS FILE
  */
-class CompanyUserProductListCollectionTransfer extends AbstractTransfer
+class CustomerProductListCollectionTransfer extends AbstractTransfer
 {
     const BLACKLIST_IDS = 'blacklistIds';
 
@@ -65,7 +65,7 @@ class CompanyUserProductListCollectionTransfer extends AbstractTransfer
      *
      * @return $this
      */
-    public function setBlacklistIds(array $blacklistIds = null)
+    public function setBlacklistIds(?array $blacklistIds = null)
     {
         if ($blacklistIds === null) {
             $blacklistIds = [];
@@ -121,7 +121,7 @@ class CompanyUserProductListCollectionTransfer extends AbstractTransfer
      *
      * @return $this
      */
-    public function setWhitelistIds(array $whitelistIds = null)
+    public function setWhitelistIds(?array $whitelistIds = null)
     {
         if ($whitelistIds === null) {
             $whitelistIds = [];

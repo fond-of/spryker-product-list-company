@@ -3,6 +3,7 @@
 namespace FondOfSpryker\Zed\ProductListCompany\Business;
 
 use Generated\Shared\Transfer\CompanyUserTransfer;
+use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
@@ -13,15 +14,15 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class ProductListCompanyFacade extends AbstractFacade implements ProductListCompanyFacadeInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\CompanyUserTransfer $companyUserTransfer
+     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
      *
-     * @return \Generated\Shared\Transfer\CompanyUserTransfer
+     * @return \Generated\Shared\Transfer\CustomerTransfer
      */
-    public function hydrateCompanyUserWithProductListIds(CompanyUserTransfer $companyUserTransfer): CompanyUserTransfer
+    public function expandCustomerTransferWithProductListIds(CustomerTransfer $customerTransfer): CustomerTransfer
     {
         return $this->getFactory()
-            ->createCompanyUserHydrator()
-            ->hydrateCompanyUserTransferWithProductListIds($companyUserTransfer);
+            ->createCustomerExpander()
+            ->expandCustomerTransferWithProductListIds($customerTransfer);
     }
 
     /**

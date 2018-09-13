@@ -3,7 +3,7 @@
 namespace FondOfSpryker\Zed\ProductListCompany\Business;
 
 use Codeception\Test\Unit;
-use FondOfSpryker\Zed\ProductListCompany\Business\Model\CompanyUserHydrator;
+use FondOfSpryker\Zed\ProductListCompany\Business\Model\CustomerExpander;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationReader;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationWriter;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListReaderInterface;
@@ -60,10 +60,10 @@ class ProductListCompanyBusinessFactoryTest extends Unit
     /**
      * @return void
      */
-    public function testCreateCompanyExpander(): void
+    public function testCreateCustomerExpander(): void
     {
-        $companyUserHydrator = $this->productListCompanyBusinessFactory->createCompanyUserHydrator();
-        $this->assertInstanceOf(CompanyUserHydrator::class, $companyUserHydrator);
+        $customerExpander = $this->productListCompanyBusinessFactory->createCustomerExpander();
+        $this->assertInstanceOf(CustomerExpander::class, $customerExpander);
     }
 
     /**

@@ -16,11 +16,11 @@
         <property name="companyIds" type="int[]"/>
     </transfer>
 
-    <transfer name="CompanyUser">
-        <property name="productListCollection" type="CompanyUserProductListCollection"/>
+    <transfer name="Customer">
+        <property name="customerProductListCollection" type="CustomerProductListCollection"/>
     </transfer>
 
-    <transfer name="CompanyUserProductListCollection">
+    <transfer name="CustomerProductListCollection">
         <property name="blacklistIds" type="int[]" singular="blacklistId"/>
         <property name="whitelistIds" type="int[]" singular="whitelistId"/>
     </transfer>
