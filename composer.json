@@ -15,6 +15,7 @@
   "require": {
     "php": ">=7.1",
     "spryker/company-user-extension": "^1.0.0",
+    "spryker/customer": "^7.0.0",
     "fond-of-spryker/product-list": "^1.0.0"
   },
   "require-dev": {
