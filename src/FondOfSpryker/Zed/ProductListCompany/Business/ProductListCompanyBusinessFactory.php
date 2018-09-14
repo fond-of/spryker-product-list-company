@@ -10,6 +10,8 @@ use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelati
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationWriterInterface;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListReader;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListReaderInterface;
+use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListTransferExpander;
+use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListTransferExpanderInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
@@ -33,6 +35,14 @@ class ProductListCompanyBusinessFactory extends AbstractBusinessFactory
     public function createCustomerExpander(): CustomerExpanderInterface
     {
         return new CustomerExpander($this->createProductListReader());
+    }
+
+    /**
+     * @return \FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListTransferExpanderInterface
+     */
+    public function createProductListTransferExpander(): ProductListTransferExpanderInterface
+    {
+        return new ProductListTransferExpander($this->createProductListCompanyRelationReader());
     }
 
     /**

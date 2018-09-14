@@ -16,6 +16,13 @@ interface ProductListCompanyFacadeInterface
     public function expandCustomerTransferWithProductListIds(CustomerTransfer $customerTransfer): CustomerTransfer;
 
     /**
+     * @param \Generated\Shared\Transfer\ProductListTransfer $productListTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductListTransfer
+     */
+    public function expandProductListTransferWithProductListCompanyRelationTransfer(ProductListTransfer $productListTransfer): ProductListTransfer;
+
+    /**
      * @param \Generated\Shared\Transfer\ProductListCompanyRelationTransfer $productListCompanyRelationTransfer
      *
      * @return \Generated\Shared\Transfer\ProductListCompanyRelationTransfer

@@ -2,7 +2,6 @@
 
 namespace FondOfSpryker\Zed\ProductListCompany\Business;
 
-use Generated\Shared\Transfer\CompanyUserTransfer;
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
@@ -47,5 +46,19 @@ class ProductListCompanyFacade extends AbstractFacade implements ProductListComp
     ): void {
         $this->getFactory()->createProductListCompanyRelationWriter()
             ->deleteProductListCompanyRelation($productListTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\ProductListTransfer $productListTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductListTransfer
+     */
+    public function expandProductListTransferWithProductListCompanyRelationTransfer(
+        ProductListTransfer $productListTransfer
+    ): ProductListTransfer {
+        $productListTransfer = $this->getFactory()->createProductListTransferExpander()
+            ->expandWithProductListCompanyRelationTransfer($productListTransfer);
+
+        return $productListTransfer;
     }
 }
