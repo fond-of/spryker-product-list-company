@@ -50,7 +50,12 @@ class ProductListCompanyPersistenceFactoryTest extends Unit
     public function testGetProductListQuery(): void
     {
         $this->containerMock->expects($this->atLeastOnce())
-            ->method('offsetGet')
+            ->method('has')
+            ->with(ProductListCompanyDependencyProvider::PROPEL_QUERY_PRODUCT_LIST)
+            ->willReturn(true);
+
+        $this->containerMock->expects($this->atLeastOnce())
+            ->method('get')
             ->with(ProductListCompanyDependencyProvider::PROPEL_QUERY_PRODUCT_LIST)
             ->willReturn($this->spyProductListQueryMock);
 
