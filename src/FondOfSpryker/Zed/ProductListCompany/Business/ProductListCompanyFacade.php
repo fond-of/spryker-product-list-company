@@ -2,13 +2,17 @@
 
 namespace FondOfSpryker\Zed\ProductListCompany\Business;
 
+use Generated\Shared\Transfer\CompanyTransfer;
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\ProductListCollectionTransfer;
 use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * @method \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyBusinessFactory getFactory()
+ * @method \FondOfSpryker\Zed\ProductListCompany\Persistence\ProductListCompanyEntityManagerInterface getEntityManager()
+ * @method \FondOfSpryker\Zed\ProductListCompany\Persistence\ProductListCompanyRepositoryInterface getRepository()
  */
 class ProductListCompanyFacade extends AbstractFacade implements ProductListCompanyFacadeInterface
 {
@@ -60,5 +64,15 @@ class ProductListCompanyFacade extends AbstractFacade implements ProductListComp
             ->expandWithProductListCompanyRelationTransfer($productListTransfer);
 
         return $productListTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\CompanyTransfer $companyTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductListCollectionTransfer
+     */
+    public function getProductListCollectionByCompanyId(CompanyTransfer $companyTransfer): ProductListCollectionTransfer
+    {
+        return $this->getFactory()->createProductListReader()->getProductListCollectionByIdCompanyId($companyTransfer);
     }
 }

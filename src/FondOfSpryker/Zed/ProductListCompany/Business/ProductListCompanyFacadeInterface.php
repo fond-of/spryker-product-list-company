@@ -2,12 +2,21 @@
 
 namespace FondOfSpryker\Zed\ProductListCompany\Business;
 
+use Generated\Shared\Transfer\CompanyTransfer;
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\ProductListCollectionTransfer;
 use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 
 interface ProductListCompanyFacadeInterface
 {
+    /**
+     * @param \Generated\Shared\Transfer\CompanyTransfer $companyTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductListCollectionTransfer
+     */
+    public function getProductListCollectionByCompanyId(CompanyTransfer $companyTransfer): ProductListCollectionTransfer;
+
     /**
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
      *
