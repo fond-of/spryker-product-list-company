@@ -3,6 +3,7 @@
 namespace FondOfSpryker\Client\ProductListCompany;
 
 use Generated\Shared\Transfer\CompanyTransfer;
+use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\ProductListCollectionTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
@@ -20,5 +21,16 @@ class ProductListCompanyClient extends AbstractClient implements ProductListComp
     {
         return $this->getFactory()->createZedProductListCompanyStub()
             ->getProductListCollectionByCompanyId($companyTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerTransfer
+     */
+    public function expandCustomerWithProductListIds(CustomerTransfer $customerTransfer): CustomerTransfer
+    {
+        return $this->getFactory()->createZedProductListCompanyStub()
+            ->expandCustomerWithProductListIds($customerTransfer);
     }
 }
