@@ -9,7 +9,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 /**
  * @method \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacadeInterface getFacade()
  */
-class ProductListTransferExpanderPlugin extends AbstractPlugin implements ProductListTransferExpanderPluginInterface
+class CompanyProductListTransferExpanderPlugin extends AbstractPlugin implements ProductListTransferExpanderPluginInterface
 {
     /**
      * Specification
