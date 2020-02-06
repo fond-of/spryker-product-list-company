@@ -2,17 +2,22 @@
 
 namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
 
+use FondOfSpryker\Zed\ProductList\Dependency\Plugin\ProductListPostSaverPluginInterface;
 use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
-use Spryker\Zed\ProductList\Business\ProductList\ProductListPostSaverInterface;
 
 /**
  * @method \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\ProductListCompany\ProductListCompanyConfig getConfig()
  */
-class ProductListCompanyRelationPostSaverPlugin extends AbstractPlugin implements ProductListPostSaverInterface
+class ProductListCompanyRelationPostSaverPlugin extends AbstractPlugin implements ProductListPostSaverPluginInterface
 {
     /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param \Generated\Shared\Transfer\ProductListTransfer $productListTransfer
      *
      * @return \Generated\Shared\Transfer\ProductListTransfer
