@@ -1,13 +1,14 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListExtension;
 
-use FondOfSpryker\Zed\ProductList\Dependency\Plugin\ProductListTransferExpanderPluginInterface;
+use FondOfSpryker\Zed\ProductListExtension\Dependency\Plugin\ProductListTransferExpanderPluginInterface;
 use Generated\Shared\Transfer\ProductListTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
  * @method \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\ProductListCompany\ProductListCompanyConfig getConfig()
  */
 class CompanyProductListTransferExpanderPlugin extends AbstractPlugin implements ProductListTransferExpanderPluginInterface
 {

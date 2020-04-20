@@ -1,9 +1,10 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListExtension;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacade;
+use Generated\Shared\Transfer\ProductListTransfer;
 
 class ProductListTransferExpanderPluginTest extends Unit
 {
@@ -13,7 +14,7 @@ class ProductListTransferExpanderPluginTest extends Unit
     protected $productListTransferMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\CompanyProductListTransferExpanderPlugin
+     * @var \FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListExtension\CompanyProductListTransferExpanderPlugin
      */
     protected $productListTransferExpanderPlugin;
 
@@ -29,7 +30,7 @@ class ProductListTransferExpanderPluginTest extends Unit
     {
         parent::_before();
 
-        $this->productListTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+        $this->productListTransferMock = $this->getMockBuilder(ProductListTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 

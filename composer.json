@@ -16,15 +16,16 @@
     "php": ">=7.1",
     "spryker/company-user-extension": "^1.0.0",
     "spryker/customer": "^7.0.0",
-    "fond-of-spryker/product-list": "^1.0.0"
+    "fond-of-spryker/product-list": "dev-spryker_upgrade",
+    "fond-of-spryker/product-list-extension": "dev-master"
   },
   "require-dev": {
     "spryker/code-sniffer": "^0.12",
     "codeception/codeception": "^2.4",
-    "mikey179/vfsstream": "^1.6",
     "phpro/grumphp": "^0.14",
     "sebastian/phpcpd": "^4.0",
-    "php-coveralls/php-coveralls": "^2.1"
+    "php-coveralls/php-coveralls": "^2.1",
+    "fond-of-codeception/spryker": "dev-master"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

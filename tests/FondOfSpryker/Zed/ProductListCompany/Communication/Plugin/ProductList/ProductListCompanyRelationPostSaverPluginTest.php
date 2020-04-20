@@ -1,14 +1,16 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductList;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacade;
+use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
 
 class ProductListCompanyRelationPostSaverPluginTest extends Unit
 {
     /**
-     * @var \FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListCompanyRelationPostSaverPlugin
+     * @var \FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductList\ProductListCompanyRelationPostSaverPlugin
      */
     protected $productListCompanyRelationPostSaverPlugin;
 
@@ -34,14 +36,12 @@ class ProductListCompanyRelationPostSaverPluginTest extends Unit
     {
         parent::_before();
 
-        $this->productListTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+        $this->productListTransferMock = $this->getMockBuilder(ProductListTransfer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getProductListCompanyRelation', 'getIdProductList', 'setProductListCompanyRelation'])
             ->getMock();
 
-        $this->productListCompanyRelationTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCompanyRelationTransfer')
+        $this->productListCompanyRelationTransferMock = $this->getMockBuilder(ProductListCompanyRelationTransfer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['setIdProductList'])
             ->getMock();
 
         $this->productListCompanyFacadeMock = $this->getMockBuilder(ProductListCompanyFacade::class)
