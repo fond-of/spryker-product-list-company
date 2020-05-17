@@ -3,7 +3,6 @@
 namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListExtension;
 
 use FondOfSpryker\Zed\ProductListExtension\Dependency\Plugin\ProductListPreDeletePluginInterface;
-use Generated\Shared\Transfer\ProductListResponseTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
@@ -20,7 +19,7 @@ class ProductListCompanyRelationPreDeletePlugin extends AbstractPlugin implement
      *
      * @param \Generated\Shared\Transfer\ProductListTransfer $productListTransfer
      *
-     * @return \Generated\Shared\Transfer\ProductListResponseTransfer
+     * @return void
      */
     public function execute(ProductListTransfer $productListTransfer): void
     {
