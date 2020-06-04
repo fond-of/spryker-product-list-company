@@ -11,6 +11,8 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 
 /**
  * @method \FondOfSpryker\Zed\ProductListCompany\ProductListCompanyConfig getConfig()
+ * @method \FondOfSpryker\Zed\ProductListCompany\Persistence\ProductListCompanyEntityManagerInterface getEntityManager()
+ * @method \FondOfSpryker\Zed\ProductListCompany\Persistence\ProductListCompanyRepositoryInterface getRepository()
  */
 class ProductListCompanyPersistenceFactory extends AbstractPersistenceFactory
 {
