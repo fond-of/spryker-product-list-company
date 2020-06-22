@@ -9,6 +9,7 @@ use Spryker\Zed\Kernel\Container;
 class ProductListCompanyDependencyProvider extends AbstractBundleDependencyProvider
 {
     public const PROPEL_QUERY_PRODUCT_LIST = 'PROPEL_QUERY_PRODUCT_LIST';
+    public const PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE = 'PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -28,6 +29,19 @@ class ProductListCompanyDependencyProvider extends AbstractBundleDependencyProvi
      *
      * @return \Spryker\Zed\Kernel\Container
      */
+    public function provideBusinessLayerDependencies(Container $container): Container
+    {
+        $container = parent::provideBusinessLayerDependencies($container);
+        $container = $this->addProductListCompanyPostSavePlugins($container);
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
     protected function addProductListPropelQuery(Container $container): Container
     {
         $container[static::PROPEL_QUERY_PRODUCT_LIST] = function (Container $container) {
@@ -35,5 +49,29 @@ class ProductListCompanyDependencyProvider extends AbstractBundleDependencyProvi
         };
 
         return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addProductListCompanyPostSavePlugins(Container $container): Container
+    {
+        $container[static::PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE] = function () {
+            return $this->getProductListCompanyRelationPostSavePlugins();
+        };
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface[]
+     */
+    protected function getProductListCompanyRelationPostSavePlugins()
+    {
+        return [];
     }
 }
