@@ -3,7 +3,11 @@
 namespace FondOfSpryker\Zed\ProductListCompany\Business\Model;
 
 use Codeception\Test\Unit;
+use Generated\Shared\Transfer\CompanyTransfer;
+use Generated\Shared\Transfer\CompanyUserTransfer;
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\ProductListCollectionTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
 
 class CustomerExpanderTest extends Unit
 {
@@ -51,31 +55,29 @@ class CustomerExpanderTest extends Unit
 
         $this->customerTransfer = new CustomerTransfer();
 
-        $this->companyUserTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CompanyUserTransfer')
-            ->disableOriginalConstructor()
-            ->setMethods(['getCompany'])
-            ->getMock();
-
-        $this->companyTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CompanyTransfer')
+        $this->companyUserTransferMock = $this->getMockBuilder(CompanyUserTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListReaderMock = $this->getMockForAbstractClass(ProductListReaderInterface::class);
+        $this->companyTransferMock = $this->getMockBuilder(CompanyTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->productListReaderMock = $this->getMockBuilder(ProductListReaderInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->productListsMock = [
-            $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+            $this->getMockBuilder(ProductListTransfer::class)
                 ->disableOriginalConstructor()
-                ->setMethods(['getType', 'getIdProductList'])
                 ->getMock(),
-            $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+            $this->getMockBuilder(ProductListTransfer::class)
                 ->disableOriginalConstructor()
-                ->setMethods(['getType', 'getIdProductList'])
                 ->getMock(),
         ];
 
-        $this->productListCollectionTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCollectionTransfer')
+        $this->productListCollectionTransferMock = $this->getMockBuilder(ProductListCollectionTransfer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getProductLists'])
             ->getMock();
 
         $this->customerExpander = new CustomerExpander($this->productListReaderMock);
