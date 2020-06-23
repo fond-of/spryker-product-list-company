@@ -6,6 +6,9 @@ use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\CustomerExpander;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationWriter;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListTransferExpander;
+use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
 
 class ProductListCompanyFacadeTest extends Unit
 {
@@ -56,11 +59,11 @@ class ProductListCompanyFacadeTest extends Unit
     {
         parent::_before();
 
-        $this->productListTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+        $this->productListTransferMock = $this->getMockBuilder(ProductListTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListCompanyRelationTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCompanyRelationTransfer')
+        $this->productListCompanyRelationTransferMock = $this->getMockBuilder(ProductListCompanyRelationTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -68,7 +71,7 @@ class ProductListCompanyFacadeTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->customerTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CustomerTransfer')
+        $this->customerTransferMock = $this->getMockBuilder(CustomerTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 

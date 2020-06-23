@@ -4,6 +4,8 @@ namespace FondOfSpryker\Zed\ProductListCompany\Business\Model;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCompany\Persistence\ProductListCompanyRepositoryInterface;
+use Generated\Shared\Transfer\CompanyTransfer;
+use Generated\Shared\Transfer\ProductListCollectionTransfer;
 
 class ProductListReaderTest extends Unit
 {
@@ -32,14 +34,15 @@ class ProductListReaderTest extends Unit
      */
     protected function _before(): void
     {
-        $this->productListCompanyRepositoryMock = $this->getMockForAbstractClass(ProductListCompanyRepositoryInterface::class);
-
-        $this->companyTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CompanyTransfer')
+        $this->productListCompanyRepositoryMock = $this->getMockBuilder(ProductListCompanyRepositoryInterface::class)
             ->disableOriginalConstructor()
-            ->setMethods(['requireIdCompany', 'getIdCompany'])
             ->getMock();
 
-        $this->productListCollectionTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCollectionTransfer')
+        $this->companyTransferMock = $this->getMockBuilder(CompanyTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->productListCollectionTransferMock = $this->getMockBuilder(ProductListCollectionTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 

@@ -6,10 +6,13 @@ use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\CustomerExpander;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationReader;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationWriter;
-use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListReaderInterface;
+use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListReader;
 use FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListTransferExpander;
 use FondOfSpryker\Zed\ProductListCompany\Persistence\ProductListCompanyEntityManager;
 use FondOfSpryker\Zed\ProductListCompany\Persistence\ProductListCompanyRepository;
+use FondOfSpryker\Zed\ProductListCompany\ProductListCompanyDependencyProvider;
+use FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface;
+use Spryker\Zed\Kernel\Container;
 
 class ProductListCompanyBusinessFactoryTest extends Unit
 {
@@ -17,6 +20,11 @@ class ProductListCompanyBusinessFactoryTest extends Unit
      * @var \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyBusinessFactory
      */
     protected $productListCompanyBusinessFactory;
+
+    /**
+     * @var \Spryker\Zed\Kernel\Container|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $containerMock;
 
     /**
      * @var \FondOfSpryker\Zed\ProductListCompany\Persistence\ProductListCompanyRepository|\PHPUnit\Framework\MockObject\MockObject
@@ -29,11 +37,20 @@ class ProductListCompanyBusinessFactoryTest extends Unit
     protected $entityManagerMock;
 
     /**
+     * @var \FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface[]|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $productListCompanyPostSavePluginMocks;
+
+    /**
      * @return void
      */
     protected function _before(): void
     {
         parent::_before();
+
+        $this->containerMock = $this->getMockBuilder(Container::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->repositoryMock = $this->getMockBuilder(ProductListCompanyRepository::class)
             ->disableOriginalConstructor()
@@ -43,10 +60,17 @@ class ProductListCompanyBusinessFactoryTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->productListCompanyPostSavePluginMocks = [
+            $this->getMockBuilder(ProductListCompanyPostSavePluginInterface::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         $this->productListCompanyBusinessFactory = new ProductListCompanyBusinessFactory();
 
         $this->productListCompanyBusinessFactory->setRepository($this->repositoryMock);
         $this->productListCompanyBusinessFactory->setEntityManager($this->entityManagerMock);
+        $this->productListCompanyBusinessFactory->setContainer($this->containerMock);
     }
 
     /**
@@ -55,7 +79,7 @@ class ProductListCompanyBusinessFactoryTest extends Unit
     public function testCreateProductListReader(): void
     {
         $productListReader = $this->productListCompanyBusinessFactory->createProductListReader();
-        $this->assertInstanceOf(ProductListReaderInterface::class, $productListReader);
+        $this->assertInstanceOf(ProductListReader::class, $productListReader);
     }
 
     /**
@@ -81,6 +105,16 @@ class ProductListCompanyBusinessFactoryTest extends Unit
      */
     public function testCreateProductListCompanyRelationWriter(): void
     {
+        $this->containerMock->expects($this->atLeastOnce())
+            ->method('has')
+            ->with(ProductListCompanyDependencyProvider::PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE)
+            ->willReturn(true);
+
+        $this->containerMock->expects($this->atLeastOnce())
+            ->method('get')
+            ->with(ProductListCompanyDependencyProvider::PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE)
+            ->willReturn($this->productListCompanyPostSavePluginMocks);
+
         $productListCompanyRelationWriter = $this->productListCompanyBusinessFactory
             ->createProductListCompanyRelationWriter();
         $this->assertInstanceOf(ProductListCompanyRelationWriter::class, $productListCompanyRelationWriter);

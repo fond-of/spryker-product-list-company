@@ -44,7 +44,7 @@ class ProductListCompanyDependencyProvider extends AbstractBundleDependencyProvi
      */
     protected function addProductListPropelQuery(Container $container): Container
     {
-        $container[static::PROPEL_QUERY_PRODUCT_LIST] = function (Container $container) {
+        $container[static::PROPEL_QUERY_PRODUCT_LIST] = static function () {
             return SpyProductListQuery::create();
         };
 
@@ -58,19 +58,19 @@ class ProductListCompanyDependencyProvider extends AbstractBundleDependencyProvi
      */
     protected function addProductListCompanyPostSavePlugins(Container $container): Container
     {
-        $container[static::PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE] = function () {
-            return $this->getProductListCompanyRelationPostSavePlugins();
+        $self = $this;
+
+        $container[static::PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE] = static function () use ($self) {
+            return $self->getProductListCompanyRelationPostSavePlugins();
         };
 
         return $container;
     }
 
     /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
      * @return \FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface[]
      */
-    protected function getProductListCompanyRelationPostSavePlugins()
+    protected function getProductListCompanyRelationPostSavePlugins(): array
     {
         return [];
     }

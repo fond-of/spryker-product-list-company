@@ -4,6 +4,8 @@ namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacade;
+use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
 
 class ProductListCompanyRelationPreDeleterPluginTest extends Unit
 {
@@ -29,11 +31,11 @@ class ProductListCompanyRelationPreDeleterPluginTest extends Unit
     {
         parent::_before();
 
-        $this->productListTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+        $this->productListTransferMock = $this->getMockBuilder(ProductListTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListCompanyRelationTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCompanyRelationTransfer')
+        $this->productListCompanyRelationTransferMock = $this->getMockBuilder(ProductListCompanyRelationTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
