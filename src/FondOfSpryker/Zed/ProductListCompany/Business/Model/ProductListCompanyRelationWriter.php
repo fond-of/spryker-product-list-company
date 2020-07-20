@@ -128,7 +128,6 @@ class ProductListCompanyRelationWriter implements ProductListCompanyRelationWrit
     protected function executeProductListCompanyPostSavePlugins(
         ProductListCompanyRelationTransfer $productListCompanyRelationTransfer
     ): ProductListCompanyRelationTransfer {
-
         foreach ($this->productListCompanyRelationsPostSavePlugins as $productListCompanyPostSavePlugin) {
             $productListCompanyRelationTransfer = $productListCompanyPostSavePlugin->postSave($productListCompanyRelationTransfer);
         }
