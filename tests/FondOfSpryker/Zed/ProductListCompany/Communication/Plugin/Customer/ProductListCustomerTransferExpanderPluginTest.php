@@ -19,7 +19,7 @@ class ProductListCustomerTransferExpanderPluginTest extends Unit
     protected $customerTransferMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerFacade|\PHPUnit\Framework\MockObject\MockObject
+     * @var \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacade|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $productListCompanyFacade;
 

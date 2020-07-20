@@ -2,7 +2,6 @@
 
 namespace FondOfSpryker\Zed\ProductListCompany;
 
-use Closure;
 use Codeception\Test\Unit;
 use Spryker\Zed\Kernel\Container;
 
@@ -26,23 +25,21 @@ class ProductListCompanyDependencyProviderTest extends Unit
         parent::_before();
 
         $this->productListCompanyDependencyProvider = new ProductListCompanyDependencyProvider();
+
         $this->containerMock = $this->getMockBuilder(Container::class)
-            ->disableOriginalConstructor()
+            ->setMethodsExcept(['factory', 'set', 'offsetSet', 'get', 'offsetGet'])
             ->getMock();
     }
 
     /**
      * @return void
      */
-    public function testProvidePersistenceLayerDependencies(): void
+    public function testProvideBusinessLayerDependencies(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('offsetSet')
-            ->with(
-                ProductListCompanyDependencyProvider::PROPEL_QUERY_PRODUCT_LIST,
-                $this->isInstanceOf(Closure::class)
-            );
+        $container = $this->productListCompanyDependencyProvider->provideBusinessLayerDependencies($this->containerMock);
 
-        $this->productListCompanyDependencyProvider->providePersistenceLayerDependencies($this->containerMock);
+        $this->assertEquals($this->containerMock, $container);
+        $this->assertIsArray($container[ProductListCompanyDependencyProvider::PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE]);
+        $this->assertCount(0, $container[ProductListCompanyDependencyProvider::PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE]);
     }
 }
