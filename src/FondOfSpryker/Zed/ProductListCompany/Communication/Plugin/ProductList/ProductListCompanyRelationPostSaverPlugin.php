@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductList;
 
 use FondOfSpryker\Zed\ProductList\Dependency\Plugin\ProductListPostSaverPluginInterface;
 use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
@@ -14,7 +14,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 class ProductListCompanyRelationPostSaverPlugin extends AbstractPlugin implements ProductListPostSaverPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *

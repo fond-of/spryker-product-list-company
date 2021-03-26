@@ -1,18 +1,18 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListExtension;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacade;
 use Generated\Shared\Transfer\ProductListCompanyRelationTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 
-class ProductListCompanyRelationPreDeleterPluginTest extends Unit
+class ProductListCompanyRelationPreDeletePluginTest extends Unit
 {
     /**
-     * @var \FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListCompanyRelationPreDeleterPlugin
+     * @var \FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListExtension\ProductListCompanyRelationPreDeletePlugin
      */
-    protected $productListCompanyRelationPreDeleterPlugin;
+    protected $productListCompanyRelationPreDeletePlugin;
 
     /**
      * @var \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacade|\PHPUnit\Framework\MockObject\MockObject
@@ -23,6 +23,11 @@ class ProductListCompanyRelationPreDeleterPluginTest extends Unit
      * @var \Generated\Shared\Transfer\ProductListTransfer|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $productListTransferMock;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\ProductListCompanyRelationTransfer
+     */
+    protected $productListCompanyRelationTransferMock;
 
     /**
      * @return void
@@ -43,9 +48,9 @@ class ProductListCompanyRelationPreDeleterPluginTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListCompanyRelationPreDeleterPlugin = new ProductListCompanyRelationPreDeleterPlugin();
+        $this->productListCompanyRelationPreDeletePlugin = new ProductListCompanyRelationPreDeletePlugin();
 
-        $this->productListCompanyRelationPreDeleterPlugin->setFacade($this->productListCompanyFacadeMock);
+        $this->productListCompanyRelationPreDeletePlugin->setFacade($this->productListCompanyFacadeMock);
     }
 
     /**
@@ -57,6 +62,7 @@ class ProductListCompanyRelationPreDeleterPluginTest extends Unit
             ->method('deleteProductListCompanyRelation')
             ->with($this->productListTransferMock);
 
-        $this->productListCompanyRelationPreDeleterPlugin->preDelete($this->productListTransferMock);
+        $this->productListCompanyRelationPreDeletePlugin
+            ->execute($this->productListTransferMock);
     }
 }

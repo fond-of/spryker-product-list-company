@@ -155,7 +155,7 @@ class ProductListCompanyRelationWriterTest extends Unit
             ->willReturn($this->productListCompanyRelationTransferMock);
 
         try {
-            $reflection = new ReflectionClass(\get_class($this->productListCompanyRelationWriter));
+            $reflection = new ReflectionClass(get_class($this->productListCompanyRelationWriter));
 
             $method = $reflection->getMethod('executeSaveProductListCompanyRelationTransaction');
             $method->setAccessible(true);

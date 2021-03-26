@@ -19,6 +19,7 @@ class ProductListCompanyDependencyProvider extends AbstractBundleDependencyProvi
     public function providePersistenceLayerDependencies(Container $container): Container
     {
         $container = parent::providePersistenceLayerDependencies($container);
+
         $container = $this->addProductListPropelQuery($container);
 
         return $container;

@@ -1,8 +1,8 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListExtension;
 
-use FondOfSpryker\Zed\ProductList\Dependency\Plugin\ProductListPreDeleterPluginInterface;
+use FondOfSpryker\Zed\ProductListExtension\Dependency\Plugin\ProductListPreDeletePluginInterface;
 use Generated\Shared\Transfer\ProductListTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
@@ -10,10 +10,10 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
  * @method \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacadeInterface getFacade()
  * @method \FondOfSpryker\Zed\ProductListCompany\ProductListCompanyConfig getConfig()
  */
-class ProductListCompanyRelationPreDeleterPlugin extends AbstractPlugin implements ProductListPreDeleterPluginInterface
+class ProductListCompanyRelationPreDeletePlugin extends AbstractPlugin implements ProductListPreDeletePluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -21,7 +21,7 @@ class ProductListCompanyRelationPreDeleterPlugin extends AbstractPlugin implemen
      *
      * @return void
      */
-    public function preDelete(ProductListTransfer $productListTransfer): void
+    public function execute(ProductListTransfer $productListTransfer): void
     {
         $this->getFacade()->deleteProductListCompanyRelation($productListTransfer);
     }

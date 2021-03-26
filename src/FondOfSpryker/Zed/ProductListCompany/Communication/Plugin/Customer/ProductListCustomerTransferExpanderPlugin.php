@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\Customer;
 
 use Generated\Shared\Transfer\CustomerTransfer;
 use Spryker\Zed\Customer\Dependency\Plugin\CustomerTransferExpanderPluginInterface;
@@ -8,11 +8,12 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
  * @method \FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\ProductListCompany\ProductListCompanyConfig getConfig()
  */
 class ProductListCustomerTransferExpanderPlugin extends AbstractPlugin implements CustomerTransferExpanderPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *

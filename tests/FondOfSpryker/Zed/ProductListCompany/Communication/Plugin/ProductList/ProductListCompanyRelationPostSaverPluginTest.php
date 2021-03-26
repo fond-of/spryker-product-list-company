@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductList;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCompany\Business\ProductListCompanyFacade;
@@ -10,7 +10,7 @@ use Generated\Shared\Transfer\ProductListTransfer;
 class ProductListCompanyRelationPostSaverPluginTest extends Unit
 {
     /**
-     * @var \FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductListCompanyRelationPostSaverPlugin
+     * @var \FondOfSpryker\Zed\ProductListCompany\Communication\Plugin\ProductList\ProductListCompanyRelationPostSaverPlugin
      */
     protected $productListCompanyRelationPostSaverPlugin;
 
