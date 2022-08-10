@@ -16,7 +16,7 @@ interface ProductListCompanyRepositoryInterface
     /**
      * @param int $idProductList
      *
-     * @return int[]
+     * @return array<int>
      */
     public function getRelatedCompanyIdsByIdProductList(int $idProductList): array;
 }

@@ -19,7 +19,7 @@ class ProductListCompanyRepository extends AbstractRepository implements Product
      */
     public function getProductListCollectionByIdCompany(int $idCompany): ProductListCollectionTransfer
     {
-        /** @var \Orm\Zed\ProductList\Persistence\SpyProductList[] $productListEntities */
+        /** @var array<\Orm\Zed\ProductList\Persistence\SpyProductList> $productListEntities */
         $productListEntities = $this->getFactory()
             ->getProductListQuery()
             ->useSpyProductListCompanyQuery()
@@ -32,7 +32,7 @@ class ProductListCompanyRepository extends AbstractRepository implements Product
 
         foreach ($productListEntities as $productListEntity) {
             $productListCollectionTransfer->addProductList(
-                $productListCompanyMapper->mapProductList($productListEntity, new ProductListTransfer())
+                $productListCompanyMapper->mapProductList($productListEntity, new ProductListTransfer()),
             );
         }
 
@@ -42,7 +42,7 @@ class ProductListCompanyRepository extends AbstractRepository implements Product
     /**
      * @param int $idProductList
      *
-     * @return int[]
+     * @return array<int>
      */
     public function getRelatedCompanyIdsByIdProductList(int $idProductList): array
     {
@@ -52,7 +52,8 @@ class ProductListCompanyRepository extends AbstractRepository implements Product
             ->select(SpyProductListCompanyTableMap::COL_FK_COMPANY);
 
         return $productListCompanyQuery
-            ->findByFkProductList($idProductList)
+            ->filterByFkProductList($idProductList)
+            ->find()
             ->toArray();
     }
 }

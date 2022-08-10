@@ -32,7 +32,7 @@ class ProductListCompanyRelationPostSaverPlugin extends AbstractPlugin implement
 
         $productListTransfer = $this->saveProductListCompanyRelation(
             $productListTransfer,
-            $productListCompanyRelationTransfer
+            $productListCompanyRelationTransfer,
         );
 
         return $productListTransfer;

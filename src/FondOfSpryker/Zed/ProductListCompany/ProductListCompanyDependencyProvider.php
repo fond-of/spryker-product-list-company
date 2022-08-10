@@ -8,7 +8,14 @@ use Spryker\Zed\Kernel\Container;
 
 class ProductListCompanyDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const PROPEL_QUERY_PRODUCT_LIST = 'PROPEL_QUERY_PRODUCT_LIST';
+
+    /**
+     * @var string
+     */
     public const PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE = 'PLUGINS_PRODUCT_LIST_COMPANY_RELATION_POST_SAVE';
 
     /**
@@ -69,7 +76,7 @@ class ProductListCompanyDependencyProvider extends AbstractBundleDependencyProvi
     }
 
     /**
-     * @return \FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface[]
+     * @return array<\FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface>
      */
     protected function getProductListCompanyRelationPostSavePlugins(): array
     {
