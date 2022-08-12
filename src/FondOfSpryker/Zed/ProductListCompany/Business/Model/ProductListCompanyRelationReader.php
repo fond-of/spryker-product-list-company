@@ -32,7 +32,7 @@ class ProductListCompanyRelationReader implements ProductListCompanyRelationRead
         $productListCompanyRelationTransfer->requireIdProductList();
 
         $companyIds = $this->productListCompanyRepository->getRelatedCompanyIdsByIdProductList(
-            $productListCompanyRelationTransfer->getIdProductList()
+            $productListCompanyRelationTransfer->getIdProductList(),
         );
 
         $productListCompanyRelationTransfer->setCompanyIds($companyIds);

@@ -8,6 +8,9 @@ use Generated\Shared\Transfer\ProductListCollectionTransfer;
 
 class CustomerExpander implements CustomerExpanderInterface
 {
+    /**
+     * @var string
+     */
     protected const TYPE_WHITELIST = 'whitelist';
 
     /**
@@ -41,7 +44,7 @@ class CustomerExpander implements CustomerExpanderInterface
         }
 
         $productListCollectionTransfer = $this->productListReader->getProductListCollectionByIdCompanyId(
-            $companyUserTransfer->getCompany()
+            $companyUserTransfer->getCompany(),
         );
 
         $this->addProductListsToCustomerTransfer($customerTransfer, $productListCollectionTransfer);

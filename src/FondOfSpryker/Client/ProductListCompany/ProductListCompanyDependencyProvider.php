@@ -8,6 +8,9 @@ use Spryker\Client\Kernel\Container;
 
 class ProductListCompanyDependencyProvider extends AbstractDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const CLIENT_ZED_REQUEST = 'CLIENT_ZED_REQUEST';
 
     /**
@@ -33,7 +36,7 @@ class ProductListCompanyDependencyProvider extends AbstractDependencyProvider
     {
         $container[static::CLIENT_ZED_REQUEST] = function (Container $container) {
             return new ProductListCompanyToZedRequestClientBridge(
-                $container->getLocator()->zedRequest()->client()
+                $container->getLocator()->zedRequest()->client(),
             );
         };
 

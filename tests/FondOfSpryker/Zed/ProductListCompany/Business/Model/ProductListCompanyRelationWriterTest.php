@@ -43,7 +43,7 @@ class ProductListCompanyRelationWriterTest extends Unit
     protected $currentProductListCompanyRelationTransferMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface[]|\PHPUnit\Framework\MockObject\MockObject[]
+     * @var array<\PHPUnit\Framework\MockObject\MockObject>|array<\FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface>
      */
     protected $productListCompanyPostSavePluginMocks;
 
@@ -83,7 +83,7 @@ class ProductListCompanyRelationWriterTest extends Unit
         $this->productListCompanyRelationWriter = new ProductListCompanyRelationWriter(
             $this->productListCompanyEntityManagerMock,
             $this->productListCompanyRelationReaderMock,
-            $this->productListCompanyPostSavePluginMocks
+            $this->productListCompanyPostSavePluginMocks,
         );
     }
 
@@ -124,13 +124,9 @@ class ProductListCompanyRelationWriterTest extends Unit
             ->with($this->productListCompanyRelationTransferMock)
             ->willReturn($this->currentProductListCompanyRelationTransferMock);
 
-        $this->currentProductListCompanyRelationTransferMock->expects($this->at(0))
+        $this->currentProductListCompanyRelationTransferMock->expects($this->atLeastOnce())
             ->method('getCompanyIds')
-            ->willReturn($relatedCompanyIds);
-
-        $this->currentProductListCompanyRelationTransferMock->expects($this->at(1))
-            ->method('getCompanyIds')
-            ->willReturn($companyIds);
+            ->willReturnOnConsecutiveCalls($relatedCompanyIds, $companyIds);
 
         $this->productListCompanyRelationTransferMock->expects($this->atLeastOnce())
             ->method('getCompanyIds')

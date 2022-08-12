@@ -54,7 +54,7 @@ class ProductListCompanyBusinessFactory extends AbstractBusinessFactory
         return new ProductListCompanyRelationWriter(
             $this->getEntityManager(),
             $this->createProductListCompanyRelationReader(),
-            $this->getProductListCompanyRelationPostSavePlugins()
+            $this->getProductListCompanyRelationPostSavePlugins(),
         );
     }
 
@@ -67,7 +67,7 @@ class ProductListCompanyBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface[]
+     * @return array<\FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface>
      */
     public function getProductListCompanyRelationPostSavePlugins(): array
     {

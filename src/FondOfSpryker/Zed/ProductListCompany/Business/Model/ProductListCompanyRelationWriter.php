@@ -17,7 +17,7 @@ class ProductListCompanyRelationWriter implements ProductListCompanyRelationWrit
     protected $productListCompanyEntityManager;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface[]
+     * @var array<\FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface>
      */
     protected $productListCompanyRelationsPostSavePlugins;
 
@@ -29,7 +29,7 @@ class ProductListCompanyRelationWriter implements ProductListCompanyRelationWrit
     /**
      * @param \FondOfSpryker\Zed\ProductListCompany\Persistence\ProductListCompanyEntityManagerInterface $productListCompanyEntityManager
      * @param \FondOfSpryker\Zed\ProductListCompany\Business\Model\ProductListCompanyRelationReaderInterface $productListCompanyRelationReader
-     * @param \FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface[] $productListCompanyRelationsPostSavePlugins
+     * @param array<\FondOfSpryker\Zed\ProductListCompanyExtension\Dependency\Plugin\ProductListCompanyPostSavePluginInterface> $productListCompanyRelationsPostSavePlugins
      */
     public function __construct(
         ProductListCompanyEntityManagerInterface $productListCompanyEntityManager,
@@ -52,7 +52,7 @@ class ProductListCompanyRelationWriter implements ProductListCompanyRelationWrit
         return $this->getTransactionHandler()->handleTransaction(
             function () use ($productListCompanyRelationTransfer) {
                 return $this->executeSaveProductListCompanyRelationTransaction($productListCompanyRelationTransfer);
-            }
+            },
         );
     }
 
@@ -77,7 +77,7 @@ class ProductListCompanyRelationWriter implements ProductListCompanyRelationWrit
         $this->productListCompanyEntityManager->removeCompanyRelations($idProductList, $deleteCompanyIds);
 
         $productListCompanyRelationTransfer->setCompanyIds(
-            $this->getRelatedCompanyIds($productListCompanyRelationTransfer)
+            $this->getRelatedCompanyIds($productListCompanyRelationTransfer),
         );
 
         $productListCompanyRelationTransfer = $this->executeProductListCompanyPostSavePlugins($productListCompanyRelationTransfer);
@@ -88,7 +88,7 @@ class ProductListCompanyRelationWriter implements ProductListCompanyRelationWrit
     /**
      * @param \Generated\Shared\Transfer\ProductListCompanyRelationTransfer $productListCompanyRelationTransfer
      *
-     * @return int[]
+     * @return array<int>
      */
     protected function getRelatedCompanyIds(
         ProductListCompanyRelationTransfer $productListCompanyRelationTransfer
@@ -102,7 +102,7 @@ class ProductListCompanyRelationWriter implements ProductListCompanyRelationWrit
     /**
      * @param \Generated\Shared\Transfer\ProductListCompanyRelationTransfer $productListCompanyRelationTransfer
      *
-     * @return int[]
+     * @return array<int>
      */
     protected function getRequestedCompanyIds(
         ProductListCompanyRelationTransfer $productListCompanyRelationTransfer
