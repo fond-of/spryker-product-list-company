@@ -46,14 +46,14 @@ class ProductListCompanyRepository extends AbstractRepository implements Product
      */
     public function getRelatedCompanyIdsByIdProductList(int $idProductList): array
     {
-        /** @var \Orm\Zed\ProductList\Persistence\SpyProductListCompanyQuery $productListCompanyQuery */
-        $productListCompanyQuery = $this->getFactory()
+        /** @var \Propel\Runtime\Collection\ArrayCollection $collection */
+        $collection = $this->getFactory()
             ->createProductListCompanyQuery()
-            ->select(SpyProductListCompanyTableMap::COL_FK_COMPANY);
-
-        return $productListCompanyQuery
+            ->clear()
             ->filterByFkProductList($idProductList)
-            ->find()
-            ->toArray();
+            ->select(SpyProductListCompanyTableMap::COL_FK_COMPANY)
+            ->find();
+
+        return $collection->toArray();
     }
 }
