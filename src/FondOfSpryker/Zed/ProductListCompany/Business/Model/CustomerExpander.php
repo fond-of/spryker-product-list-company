@@ -68,7 +68,7 @@ class CustomerExpander implements CustomerExpanderInterface
         }
 
         return count($customerProductListCollection->getBlacklistIds()) > 0
-            && count($customerProductListCollection->getWhitelistIds()) > 0;
+            || count($customerProductListCollection->getWhitelistIds()) > 0;
     }
 
     /**
